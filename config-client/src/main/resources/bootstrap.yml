@@ -1,0 +1,31 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+      prefer-ip-address: true
+spring:
+  rabbitmq:
+    host: 119.23.43.137
+    port: 5673
+    username: guest
+    password: guest
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER #CONFIG-SERVER为集群,负载均衡访问
+#      uri: http://localhost:8888 #配置中心-集群模式时不使用 ip方式
+      name: config-client
+      profile: dev
+      label: master
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
